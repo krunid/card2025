@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตั้งค่า Telegram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('https://img.kapook.com/u/2016/suppaporn/2016/king/palace02/palace02.jpg') center/cover no-repeat;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            padding: 1% 2%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8% 1.5%;
+            font-size: clamp(14px, 2vw, 18px);
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+        .container {
+            margin: 10vh auto;
+            width: clamp(300px, 80vw, 400px);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .container h2 {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 20px;
+        }
+        .container input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: clamp(12px, 1.5vw, 16px);
+        }
+        .container button {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.5vw, 16px);
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1% 0;
+            font-size: clamp(12px, 1.5vw, 16px);
+            margin-top: auto;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90vw;
+            }
+            .navbar {
+                padding: 2% 3%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div></div>
+        <a href="index.html">กลับสู่หน้าหลัก</a>
+    </div>
+
+    <div class="container">
+        <h2>ตั้งค่า Telegram</h2>
+        <input type="text" id="botToken" placeholder="Bot Token">
+        <input type="text" id="chatId" placeholder="Chat ID">
+        <button onclick="saveSettings()">บันทึก</button>
+    </div>
+
+    <footer>
+        <p>© 2025 ลงนามถวายพระพร | พัฒนาโดย ครูนิด ศิษย์หลวงพ่อเสือ เขียนโปแกรมโดย xAI</p>
+    </footer>
+
+    <script>
+        // โหลดค่าจาก localStorage ถ้ามี
+        document.getElementById('botToken').value = localStorage.getItem('botToken') || '';
+        document.getElementById('chatId').value = localStorage.getItem('chatId') || '';
+
+        function saveSettings() {
+            const botToken = document.getElementById('botToken').value.trim();
+            const chatId = document.getElementById('chatId').value.trim();
+
+            if (!botToken || !chatId) {
+                alert('กรุณากรอก Bot Token และ Chat ID ให้ครบถ้วน');
+                return;
+            }
+
+            localStorage.setItem('botToken', botToken);
+            localStorage.setItem('chatId', chatId);
+            alert('บันทึกการตั้งค่าสำเร็จ!');
+            window.location.href = 'index.html'; // กลับไปหน้าหลัก
+        }
+    </script>
+</body>
+</html>
